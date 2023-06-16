@@ -3,7 +3,7 @@ import '@unocss/reset/tailwind.css'
 import { getAuth } from 'firebase/auth'
 import app from './utils/firebase'
 
-// const realmApp = useRealmApp()
+const realmApp = useRealmApp()
 
 consola.info('Initializing Firebase!', app)
 
