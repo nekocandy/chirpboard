@@ -27,6 +27,7 @@
     "node": "18.16.0"
   },
   "dependencies": {
+    "consola": "^3.1.0",
     "firebase": "^9.22.2"
   }
 }
