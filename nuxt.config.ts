@@ -4,6 +4,11 @@ export default defineNuxtConfig({
     '@vueuse/nuxt',
     '@unocss/nuxt',
   ],
+  runtimeConfig: {
+    public: {
+      realmId: process.env.REALM_ID,
+    },
+  },
   build: {
     transpile: [
       'realm-web',
