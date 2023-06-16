@@ -4,4 +4,9 @@ export default defineNuxtConfig({
     '@vueuse/nuxt',
     '@unocss/nuxt',
   ],
+  build: {
+    transpile: [
+      'realm-web',
+    ],
+  },
 })
