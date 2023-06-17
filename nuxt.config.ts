@@ -11,6 +11,7 @@ export default defineNuxtConfig({
   runtimeConfig: {
     public: {
       realmId: process.env.REALM_ID,
+      vapidKey: process.env.VAPID_KEY,
     },
   },
   experimental: {
