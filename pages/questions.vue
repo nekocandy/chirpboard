@@ -16,7 +16,7 @@ if (!user)
   navigateTo('/')
 
 const userName = user!.profile.name
-const userImage = `https://www.gravatar.com/avatar/${md5(user?.profile.email || '')}.jpg?z=2048`
+const userImage = getGravatarImageURL(user!.profile.email || '')
 
 const usersCollection = useCollection('users')
 
