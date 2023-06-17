@@ -21,6 +21,17 @@ const PATHS = [
   },
 ]
 
+const runtimeConfig = useRuntimeConfig()
+const { ADMINISTRATORS } = runtimeConfig.public
+const userEmail = realmApp.currentUser?.profile.email
+if (ADMINISTRATORS.includes(userEmail || 'somethingwhichwontexist')) {
+  PATHS.push({
+    icon: ' i-ic-outline-local-police',
+    name: 'Approval Queue',
+    path: '/admin/approval',
+  })
+}
+
 const userName = toRef(realmApp.currentUser?.profile.name)
 const userImage = getGravatarImageURL(realmApp.currentUser?.profile.email || '')
 const notificationPermission = ref<'loading' | 'granted' | 'denied' | 'default'>('loading')
