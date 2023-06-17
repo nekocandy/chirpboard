@@ -18,4 +18,7 @@ export default defineNuxtConfig({
       'realm-web',
     ],
   },
+  experimental: {
+    watcher: 'chokidar',
+  },
 })
