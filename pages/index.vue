@@ -20,11 +20,13 @@ async function signIn() {
 </script>
 
 <template>
-  <div rounded-md bg-zinc-950 p-8>
-    <button class="flex items-center gap-2 border-2 border-zinc-900 rounded-md bg-zinc-800 px-12 py-4 hover:bg-opacity-90" @click="signIn">
-      <div i-ri-google-fill />
-      Sign In
-    </button>
+  <div h-full w-full rounded-md bg-zinc-950>
+    <div class="h-full w-full bg-[url(/bg.gif)]" flex items-center bg-cover bg-center bg-no-repeat px-8>
+      <button animate-pulse-alt class="mt-94 flex items-center gap-2 border-2 border-zinc-900 rounded-md bg-zinc-800 px-12 py-4 hover:bg-opacity-90" @click="signIn">
+        <div i-ri-google-fill />
+        Sign In
+      </button>
+    </div>
   </div>
 </template>
 
