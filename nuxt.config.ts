@@ -29,6 +29,7 @@ export default defineNuxtConfig({
     public: {
       realmId: process.env.REALM_ID,
       vapidKey: process.env.VAPID_KEY,
+      ADMINISTRATORS: process.env.ADMINISTRATORS?.split(',') ?? [],
     },
   },
   experimental: {
