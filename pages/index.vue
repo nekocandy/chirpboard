@@ -14,7 +14,7 @@ async function signIn() {
   catch (error: any) {
     consola.error('[FIREBASE] [AUTH] Failed to sign in', error)
     // eslint-disable-next-line no-alert
-    prompt(`Failed to sign in ${error.message}`)
+    alert(`Failed to sign in ${error.message}`)
   }
 }
 </script>
