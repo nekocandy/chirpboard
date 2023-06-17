@@ -24,6 +24,7 @@ export default defineNuxtConfig({
   ],
   css: [
     '@unocss/reset/tailwind.css',
+    'vue-toast-notification/dist/theme-sugar.css',
   ],
   runtimeConfig: {
     public: {
