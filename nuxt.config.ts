@@ -5,6 +5,9 @@ export default defineNuxtConfig({
     '@vueuse/nuxt',
     '@unocss/nuxt',
   ],
+  css: [
+    '@unocss/reset/tailwind.css',
+  ],
   runtimeConfig: {
     public: {
       realmId: process.env.REALM_ID,

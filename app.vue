@@ -1,5 +1,4 @@
 <script lang="ts" setup>
-import '@unocss/reset/tailwind.css'
 import { getAuth } from 'firebase/auth'
 import { Credentials } from 'realm-web'
 import app from './utils/firebase'
@@ -19,11 +18,11 @@ onMounted(() => {
       try {
         const realmUser = await realmApp.logIn(credentials)
         if (realmUser) {
-          const config = useRuntimeConfig()
-          const { vapidKey } = config.public
-          const token = await getMessageToken(vapidKey)
-          if (token)
-            await realmUser.functions.callFunction('updateNotificationToken', token)
+          // const config = useRuntimeConfig()
+          // const { vapidKey } = config.public
+          // const token = await getMessageToken(vapidKey)
+          // if (token)
+          //   await realmUser.functions.callFunction('updateNotificationToken', token)
         }
 
         navigateTo('/questions')
