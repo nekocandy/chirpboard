@@ -13,11 +13,6 @@ export default defineNuxtConfig({
       realmId: process.env.REALM_ID,
     },
   },
-  build: {
-    transpile: [
-      'realm-web',
-    ],
-  },
   experimental: {
     watcher: 'chokidar',
   },
