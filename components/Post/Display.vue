@@ -40,10 +40,10 @@ async function deletePost() {
 <template>
   <div flex flex-col gap-3 border border-zinc-600 rounded-md px-4 py-4>
     <div flex items-center justify-between gap-2>
-      <div flex items-center gap-2>
+      <NuxtLink :to="`/profile/${userId}`" flex items-center gap-2 hover="underline underline-wavy">
         <img h-6 w-6 rounded-full :src="$props.userImage" alt="pfp">
         <span>{{ $props.userName }}</span>
-      </div>
+      </NuxtLink>
 
       <div flex gap-2>
         <div v-if="realmApp.currentUser?.id === $props.userId">
