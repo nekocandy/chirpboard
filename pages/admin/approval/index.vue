@@ -1,8 +1,4 @@
 <script setup lang="ts">
-definePageMeta({
-  layout: 'login',
-})
-
 interface User {
   id: string
   name: string
@@ -42,6 +38,9 @@ onMounted(async () => {
 <template>
   <div absolute bottom-0 left-0 right-0 top-0 flex flex-col gap-6 p-8>
     <div class="flex items-center gap-2 text-xl font-black">
+      <NuxtLink to="/home">
+        <div i-mingcute-arrow-left-fill />
+      </NuxtLink>
       <div i-ic-outline-local-police h-8 w-8 />
       <span underline underline-teal underline-double>Approval Queue</span>
       <div v-if="isLoading" i-line-md-loading-twotone-loop h-5 w-5 />
@@ -51,7 +50,7 @@ onMounted(async () => {
       <div i-line-md-loading-twotone-loop h-8 w-8 />
       Loading...
     </div>
-    <div v-else-if="users.length" v-auto-animate class="grid grid-cols-4 gap-4">
+    <div v-else-if="users.length" v-auto-animate class="grid grid-cols-1 gap-4">
       <AdminUserApprovalCard
         v-for="user in users"
         :id="user.id"
