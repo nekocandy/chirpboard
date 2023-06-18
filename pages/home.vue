@@ -57,7 +57,7 @@ watch(isAtlasSearch, async (newIsAtlasSearch) => {
     <div v-if="postsLoading" flex items-center justify-center>
       <div i-mingcute-loading-3-line h-6 w-6 animate-spin />
     </div>
-    <div v-else-if="globalPostState.length" flex flex-col gap-2 pr-3>
+    <div v-else-if="globalPostState.length" flex flex-col gap-2 overflow-y-auto pr-3>
       <PostDisplay v-for="post in globalPostState" :id="post.id" :key="post.id" :text="post.text" :user-id="post.userId" :user-name="post.userName" :user-image="post.userImage" :created-at="new Date(post.createdAt)" :liked-by="post.likedBy" @add-like="addLike" @remove-like="removeLike" @get-all-posts="getAllPosts" />
     </div>
     <div v-else pr-3>
