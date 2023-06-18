@@ -2,7 +2,7 @@
 import type { PostEmit } from '~/utils/types'
 
 const props = defineProps<PostEmit>()
-const emit = defineEmits(['getAllPosts'])
+const emit = defineEmits(['getAllPosts', 'addLike', 'removeLike'])
 const realmApp = useRealmApp()
 const { $toast } = useNuxtApp()
 
@@ -12,10 +12,15 @@ const isDeleteLoading = ref(false)
 
 async function handleLike() {
   isLikedLoading.value = true
-  if (liked.value)
+  if (liked.value) {
     await realmApp.currentUser?.callFunction('unlikePost', props.id)
+    emit('removeLike', realmApp.currentUser?.id, props.id)
+  }
 
-  else await realmApp.currentUser?.callFunction('likePost', props.id, props.userId)
+  else {
+    await realmApp.currentUser?.callFunction('likePost', props.id, props.userId)
+    emit('addLike', realmApp.currentUser?.id, props.id)
+  }
 
   $toast.success(`${liked.value ? 'Unlike\'d' : 'Liked'} the post!`)
   liked.value = !liked.value
@@ -50,10 +55,12 @@ async function deletePost() {
           <div v-if="isDeleteLoading" i-mingcute-loading-3-line animate-spin text-red />
           <div v-else title="Delete Post" i-mingcute-delete-2-line cursor-pointer text-red hover="text-red i-mingcute-delete-2-fill" @click="deletePost" />
         </div>
-        <div transform cursor-pointer transition-all @click="handleLike">
+        <div flex transform cursor-pointer items-center gap-1 transition-all @click="handleLike">
           <div v-if="isLikedLoading" i-mingcute-loading-3-line animate-spin />
           <div v-else-if="!liked" title="Like Post" i-mingcute-heart-line text-pink />
           <div v-else title="Unlike Post" i-mingcute-heart-fill text-pink />
+
+          <span text-xs text-zinc-400>{{ $props.likedBy.length }}</span>
         </div>
       </div>
     </div>
