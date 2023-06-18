@@ -4,12 +4,18 @@ import type { PostEmit } from '~/utils/types'
 const route = useRoute()
 const userId = route.params.id!
 
-const realmApp = useRealmApp()
+const usersCollection = useCollection('users')
 const postsCollection = useCollection('posts')
 const { $toast } = useNuxtApp()
 
-const userName = ref(realmApp.currentUser?.profile.name)
-const userImage = getGravatarImageURL(realmApp.currentUser?.profile.email || 'giveussomerandomavatar')
+const userInfo = await usersCollection.findOne({ id: userId })
+if (!userInfo) {
+  $toast.error('User not found!')
+  navigateTo('/home')
+}
+
+const userName = ref(userInfo.name)
+const userImage = getGravatarImageURL(userInfo.email || 'giveussomerandomavatar')
 const isPostsLoading = ref(true)
 const posts = ref<PostEmit[]>([])
 
@@ -58,7 +64,7 @@ onMounted(async () => {
         <div i-mingcute-loading-3-line h-6 w-6 animate-spin />
       </div>
       <div v-else-if="posts.length" class="flex flex-col gap-2">
-        <PostDisplay v-for="post in globalPostState" :id="post.id" :key="post.id" :text="post.text" :user-id="post.userId" :user-name="post.userName" :user-image="post.userImage" :created-at="new Date(post.createdAt)" :liked-by="post.likedBy" @get-all-posts="getAllUserPosts" />
+        <PostDisplay v-for="post in posts" :id="post.id" :key="post.id" :text="post.text" :user-id="post.userId" :user-name="post.userName" :user-image="post.userImage" :created-at="new Date(post.createdAt)" :liked-by="post.likedBy" @get-all-posts="getAllUserPosts" />
       </div>
       <div v-else class="text-center">
         You haven't posted anything, start now!
